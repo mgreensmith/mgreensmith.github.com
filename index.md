@@ -9,7 +9,7 @@ tagline: (noun) 1. Herder of boxen  2. Operations Engineer  3. Linux Sysadmin
 
 I am a herder of boxen - the servers that run your websites.
 
-I am an Operations Engineer.
+I am an Operations Engineer at [Analog Analytics](http://www.analoganalytics.com/)
 
 I am a Linux Sysadmin.
 
