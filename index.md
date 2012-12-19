@@ -4,4 +4,17 @@ title: Boxenherder
 tagline: (noun) 1. Herder of boxen  2. Operations Engineer  3. Linux Sysadmin
 ---
 {% include JB/setup %}
-## Oh, hi!
+
+## Hi, I'm Matt.
+
+I am a herder of boxen - the servers that run your websites.
+
+I am an Operations Engineer.
+
+I am a Linux Sysadmin.
+
+I am the 'Ops' to your 'Dev.'
+
+I like robots. I fly helicopters.
+
+This is my humble website.
