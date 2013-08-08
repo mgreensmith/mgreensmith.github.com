@@ -7,11 +7,11 @@
 /* line 13, ../_sass/_base.scss */
 html, body {
   background-color: #2a2a2a;
-  background: url(../images/bgs/body.png) repeat;
   height: 100%;
+  background: url(../images/bgs/body.png) repeat;
 }
 
-/* line 18, ../_sass/_base.scss */
+/* line 19, ../_sass/_base.scss */
 body {
   color: #bbb;
   text-shadow: 1px 1px 1px #000;
@@ -31,10 +31,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 35, ../_sass/_base.scss */
 a {
-  color: #bada55;
+  color: #4cb4e8;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-  -ms-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -169,18 +168,14 @@ hr {
   z-index: 0;
   -moz-border-radius-bottomleft: 5px;
   -webkit-border-bottom-left-radius: 5px;
-  -ms-border-bottom-left-radius: 5px;
-  -o-border-bottom-left-radius: 5px;
   border-bottom-left-radius: 5px;
   -moz-border-radius-bottomright: 5px;
   -webkit-border-bottom-right-radius: 5px;
-  -ms-border-bottom-right-radius: 5px;
-  -o-border-bottom-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 /* line 155, ../_sass/_base.scss */
 .page-header h1 {
-  color: #bada55;
+  color: #eee;
   margin-bottom: 0;
 }
 
@@ -295,43 +290,25 @@ div.content div#page-index {
   color: #50a1cb !important;
 }
 
-/* Layout */
-/* line 2, ../_sass/_responsive.scss */
-.navbar {
-  margin-bottom: 0;
-}
-/* line 4, ../_sass/_responsive.scss */
-.navbar div.navbar-inner {
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  -ms-border-radius: 0;
-  -o-border-radius: 0;
-  border-radius: 0;
-}
-/* line 7, ../_sass/_responsive.scss */
-.navbar ul.social {
-  /* Hide social menu on low-res screens */
-}
-@media (min-width: 240px) and (max-width: 979px) {
-  /* line 7, ../_sass/_responsive.scss */
-  .navbar ul.social {
-    display: none !important;
-  }
+/* line 270, ../_sass/_base.scss */
+.zocial.rss:focus,
+.zocial.rss:hover {
+  color: #fb9d3a !important;
 }
 
 /* Responsive Overrides */
 @media (max-width: 767px) {
-  /* line 18, ../_sass/_responsive.scss */
+  /* line 3, ../_sass/_responsive.scss */
   body {
     padding-right: 0px;
     padding-left: 0px;
   }
 
-  /* line 23, ../_sass/_responsive.scss */
+  /* line 8, ../_sass/_responsive.scss */
   div.container {
     padding: 0px 20px;
   }
-  /* line 25, ../_sass/_responsive.scss */
+  /* line 10, ../_sass/_responsive.scss */
   div.container div.page-header {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -378,29 +355,25 @@ div.posts article div.date time {
   padding: 5px 10px;
 }
 
-/* This is for your site's custom styling */
-/* line 3, ../_sass/_custom.scss */
-div.sidebar section {
-  background: #202020;
-  background-color: rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
-  -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
-  box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
-  padding: 15px;
-}
-/* line 12, ../_sass/_custom.scss */
-div.sidebar section img.icon {
-  float: left;
-  margin: 7px 15px 0 0;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
+/* This is for your Custom Content. */
+/* line 4, ../_sass/_custom.scss */
+#wrap {
+  min-height: 100%;
 }
 
+/* line 8, ../_sass/_custom.scss */
+#main {
+  overflow: auto;
+  padding-bottom: 150px;
+  /* this needs to be bigger than footer height*/
+}
+
+/* line 13, ../_sass/_custom.scss */
+.footer {
+  position: relative;
+  margin-top: -150px;
+  /* negative value of footer height */
+  height: 150px;
+  clear: both;
+  padding-top: 20px;
+}
