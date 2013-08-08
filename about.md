@@ -1,7 +1,8 @@
 ---
 layout: page
-title: Boxenherder
-tagline: (noun) 1. Herder of boxen, esp. web servers  2. Operations Engineer  3. Linux Sysadmin
+title: About Me
+tagline: Boxenherder (noun) 1. Herder of boxen, esp. web servers  2. Operations Engineer  3. Linux Sysadmin
+group: navigation
 ---
 {% include JB/setup %}
 

@@ -1,0 +1,18 @@
+---
+layout: page
+title: Boxenherder
+tagline: (noun) 1. Herder of boxen, esp. web servers  2. Operations Engineer  3. Linux Sysadmin
+---
+
+{% for post in site.posts limit: 10 %}
+<div class="row-fluid">
+  <div class="span12">
+    <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+    <h4>{{ post.date | date_to_long_string }}</h4>
+    <p>
+      {{ post.content | truncatewords:50 | strip_html }} <a href="{{ post.url }}">Read More</a>
+    </p>
+  </div>
+</div>
+
+{% endfor %}
