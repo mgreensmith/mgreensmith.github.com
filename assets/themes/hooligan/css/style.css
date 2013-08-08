@@ -8,13 +8,13 @@
 html, body {
   background-color: #2a2a2a;
   background: url(../images/bgs/body.png) repeat;
+  height: 100%;
 }
 
 /* line 18, ../_sass/_base.scss */
 body {
   color: #bbb;
   text-shadow: 1px 1px 1px #000;
-  height: 100%;
   font-family: 'Oxygen', sans-serif;
   font-size: 14px;
 }
@@ -403,3 +403,4 @@ div.sidebar section img.icon {
   -o-border-radius: 5px;
   border-radius: 5px;
 }
+

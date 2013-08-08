@@ -12,13 +12,13 @@ $default-box-shadow-blur: 1px;
 /* Override some defaults */ 
 html, body {
   background-color: #2a2a2a;
+  height:100%;
   background: url(../images/bgs/body.png) repeat ;
 }
  
 body {
   color:#bbb;
-  text-shadow:1px 1px 1px #000;
-  height:100%; 
+  text-shadow:1px 1px 1px #000; 
   font-family: 'Oxygen', sans-serif; 
   font-size: 14px;
 }

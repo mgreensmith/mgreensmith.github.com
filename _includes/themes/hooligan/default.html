@@ -107,18 +107,20 @@
       </div>
     </div>
 
-    <div class="container">
-      <div class="content">
+    <div id="wrap" class="container">
+      <div id="main" class="content">
         {{ content }}
       </div>
+    </div>
+     
 
-      <footer>
-        <p>&copy; {{ site.author.name }} 2012 
-          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
-          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
-        </p>
-      </footer>
-    </div> <!-- /container -->
+    <footer class="container footer">
+      <p>&copy; {{ site.author.name }} 2012 
+        with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+        and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+      </p>
+    </footer>
+
     {% include JB/analytics %}
   </body>
 </html>
