@@ -10,7 +10,7 @@ tagline: (noun) 1. Herder of boxen, esp. web servers  2. Operations Engineer  3.
     <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
     <h4>{{ post.date | date_to_long_string }}</h4>
     <p>
-      {{ post.content | truncatewords:50 | strip_html }} <a href="{{ post.url }}">Read More</a>
+      {{ post.excerpt }} <a href="{{ post.url }}">Read More</a>
     </p>
   </div>
 </div>
