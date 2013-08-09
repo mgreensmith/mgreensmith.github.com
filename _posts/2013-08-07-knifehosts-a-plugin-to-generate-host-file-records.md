@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Knife::Hosts, a plugin to generate host file records"
-description: ""
+description: "A knife plugin that cleans up node names into their easy-to-remember components and prints names and IPs formatted for inclusion in a hosts file."
 category: 
 tags: [chef, knife, rubygems]
 ---
