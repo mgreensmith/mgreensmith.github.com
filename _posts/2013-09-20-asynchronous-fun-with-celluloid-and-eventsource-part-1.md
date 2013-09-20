@@ -169,13 +169,13 @@ X-Content-Type-Options: nosniff
 http POST localhost:9292/run  0.25s user 0.04s system 93% cpu 0.310 total
 ```
 
-That looks much better, we see that the response from the webserver comes before the output of the called backend process. Now we are asynchronous, it wouldn't matter if this process took foir seconds, four minutes or four hours as we no longer have to block responses to our web clients to run it.
+That looks much better, we see that the response from the webserver comes before the output of the called backend process. Now we are asynchronous, it wouldn't matter if this process took four seconds, four minutes or four hours as we no longer have to block responses to our web clients to run it.
 
-The final challenge for this part of the exercise will be to push the status output of the backend process ("doing a thing", "doing another thing", etc) to our connected web clients in real time, as it happens.
+The big challenge for this part of the exercise will be to push the status output of the backend process ("doing a thing", "doing another thing", etc) to our connected web clients in real time, as it happens.
 
 These days, there are lots of ways to push data in real time from a web server to a connected client. WebSockets, Server-Sent Events, Comet, BOSH, XMPP, and (cheating with) Flash or Java Applets are all viable ways to send push messages, with various levels of server and browser support. Among these tools, Server-Sent Events (SSE) is arguably one of the simplest technologies to implement when building support for server-to-client push updates.
 
-Sinatra has built-in support for SSE when used with a streaming-capable container such as thin (now you know why I chose it!). On the client side, SSE is known as EventSource and is handled with just a few lines of javascript, I'll be using jQuery because I'm not a masochist. So let's make some changes to our sinatra app.
+Sinatra has built-in support for SSE when used with a streaming-capable container such as thin (now you know why I chose it!). On the client side, SSE is known as EventSource and is handled with just a few lines of javascript, I'll be using jQuery because I'm not a masochist. So let's make some changes to our Sinatra app.
 
 We will first add a new *setting* to hold an array of connected clients, then we'll add a `get` block to the URI `/stream`. This URI will serve a MIME-type of *text/event-stream*. We store all connected clients in the `:connections` array, and we delete them when they drop their connection.
 
@@ -202,7 +202,7 @@ SSE is completely content-agnostic.
 [empty line]
 ```
 
-Let's add a quick debug endpoint for testing. We'll make a quick POST method that takes a parameter and sends it as a `status_event` to all the connected clients.
+For testing purposes, we'll make a POST endpoint that takes a parameter and sends it as a `status_event` to all the connected clients.
 
 ```ruby
 post '/status_event' do                               # a temporary POST endpoint for testing purposes
@@ -212,62 +212,61 @@ post '/status_event' do                               # a temporary POST endpoin
   204
 end
 ```
-
+We'll need an index page to display these messages. I'm making a very simple page with nothing but a `pre` to hold our output. I'm including jQuery (not really necessary yet) and some JS to connect to the SSE EventSource, parse messages sent as the event type `status_event`, and append their content to the `pre`.
 
 ```ruby
-require 'sinatra/base'
-require 'my_backend_process'
+get '/' do
+  content = <<-EOC.gsub(/^ {6}/, '')  # just a quick helper to unindent our source code.
+    <html>
+      <head>
+        <title>Part 1</title>
+      </head>
+      <body>
+        <pre id='status_messages'></pre>
 
-class DemoServer < Sinatra::Base
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript">
 
-  set :backend_process, MyBackendProcess.new
-  set :connections, []                                  # new setting to hold an array of open connections
-
-  get '/stream', :provides => 'text/event-stream' do    # new URI for clients to listen to for SSE events
-    stream :keep_open do |out|
-      settings.connections << out
-      out.callback { settings.connections.delete(out) }
-    end
-  end
-
-  post '/run' do
-    settings.backend_process.async.run
-    204 #response without body
-  end
-
-  post '/status_event' do                               # a temporary POST endpoint for testing purposes
-    settings.connections.each { |out|                    
-      out << "event: status_event\ndata: #{params[:data]}\n\n"    # send the status_event to each client
-    }
-    204
-  end
-
-  get '/' do
-    content = <<-EOC.gsub(/^ {6}/, '')
-      <html>
-        <head>
-          <title>Part 1</title>
-        </head>
-        <body>
-          <pre id='status_messages'></pre>
-
-          <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-          <script type="text/javascript">
-
-            var es = new EventSource('/stream');                  // we are now listening to /stream
-            es.addEventListener('status_event', function(e) {     // if we get a status_event message
-              $('#status_messages').append(e.data + '\\n')        // then add it to the status_messages pre
-            }, false);
-          </script>
-        </body>
-      <html>
-    EOC
-  end
-
+          var es = new EventSource('/stream');                  // we are now listening to /stream
+          es.addEventListener('status_event', function(e) {     // if we get a status_event message
+            $('#status_messages').append(e.data + '\\n')        // then add it to the status_messages pre
+          }, false);
+        </script>
+      </body>
+    <html>
+  EOC
 end
 ```
+This seems like a good opportunity to test our progress. Fire up the webserver and load the index page in a browser. The client must connect *before* any messages are sent, as they are only sent to *connected* clients. Now we can POST to the `/status_event` endpoint and see if our parameter appears on our connected web client.
 
-We have some dirty plumbing work to do on the backend. Namely, we need to get status messages out of a running thread (the instance of our `MyBckgroundProcess` that is perfroming the `run` method) and into our webserver, so that it may be streamed to clients. Luckily, Celluloid can help us here as well, via [Celluloid::Notifications](https://github.com/celluloid/celluloid/wiki/Notifications), which is a tweaked version of ActiveSupport::notifications and provides async publish and subscibe functionality for named message streams. That's a lot of words, many more words than it will take to actually implement this.
+*server*:
+
+```bash
+$ bundle exec rackup -s thin
+>> Thin web server (v1.5.1 codename Straight Razor)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:9292, CTRL+C to stop
+127.0.0.1 - - [19/Sep/2013 23:19:07] "GET / HTTP/1.1" 200 407 0.0046
+127.0.0.1 - - [19/Sep/2013 23:19:10] "POST /status_event?data=hello HTTP/1.1" 204 - 0.0017
+```
+
+*and now we test:*
+
+```bash
+$ http -f POST localhost:9292/status_event data==hello
+HTTP/1.1 204 No Content
+Connection: close
+Server: thin 1.5.1 codename Straight Razor
+X-Content-Type-Options: nosniff
+```
+
+And we see that our message immediately shows up on our connected web client.
+
+![screenshot of browser showing hello](/assets/images/2013_09_20_celluloid_eventsource_1.png)
+
+Perfect, we are now able to generate messages in the web server and stream them to clients in real time.
+
+We still have some plumbing work to do on the backend. Namely, we need to get status messages out of a running thread (the instance of our `MyBackgroundProcess` that is performing the `run` method) and into our webserver, so that it may be streamed to clients. Luckily, Celluloid can help us here as well, via [Celluloid::Notifications](https://github.com/celluloid/celluloid/wiki/Notifications), which is a tweaked version of ActiveSupport::Notifications and provides async publish and subscibe functionality for named message streams. That's a lot of words, probably more words than it will take to actually implement this.
 
 I'm going to make a couple of helper classes. The first will be a `StatusSender` which will be included by `MyBackendProcess` and invoked upon every change_status event.
 
@@ -277,14 +276,15 @@ require 'celluloid/autostart'
 
 class StatusSender
   include Celluloid
-  include Celluloid::Notifications
+  include Celluloid::Notifications   # this is the important include 
 
   def initialize(klass)
     @class = klass
   end
 
   def send_status(message)
-    publish("status_event", "#{Time.now} #{@class.class.name}: #{message}")
+    puts "StatusSender publishing message from #{@class.class.name}: #{message}"
+    publish("status_event", "#{Time.now} #{@class.class.name}: #{message}")  # celluloid provides 'publish'
   end
 end
 ```
@@ -327,4 +327,108 @@ class MyBackendProcess
 end
 ```
 
-NOw that we can publish messages from our running background class, we need to subscribe to them and pipe them into our webserver.
+Having solved the requirement to publish messages from our running background class, we now need to subscribe to them and pipe them into our webserver. Time for that second helper class, the `StatusObserver`.
+
+```ruby
+# lib/status_observer.rb
+require 'celluloid/autostart'
+
+class StatusObserver
+  include Celluloid
+  include Celluloid::Notifications            # again, the important include
+
+  def initialize(server)
+    @server = server
+    subscribe "status_event", :status_event   # celluloid provides the subscribe method  
+  end
+
+  def status_event(*args)
+    puts "StatusObserver received status_event message: #{args[1]}"
+    @server.settings.connections.each { |out| out << "event: #{args[0].to_s}\ndata: #{args[1]}\n\n" }
+  end
+end
+```
+
+This `StatusObserver` will become a component of the webserver. It will subscribe to events on the *status_event* channel and invoke the `status_event` method when a message is received. You'll recognize the core action of the `status_event` method - it's identical to the action of the temporary POST event we created earlier - streaming the message to all connected clients.
+
+Now we will add this library to our server. We create a new instance of the `StatusObserver` as a setting (class variable) called `:observer`, but we will never need to access it in normal use. The `StatusObserver` needs access to the server's settings (namely the `:connections` array), so we pass in a reference to `self` when we create it.
+
+```ruby
+require 'sinatra/base'
+require 'status_observer'                     # require our new status_observer
+require 'my_backend_process'
+
+class DemoServer < Sinatra::Base
+
+  set :observer, StatusObserver.new(self)     #instantiate a new StatusObserver
+  set :backend_process, MyBackendProcess.new
+  set :connections, []
+<snip>
+```
+
+OK, that should be it for plumbing between `MyBackendProcess` and the server. The very last thing that we have to accomplish is the ability to trigger the backend process from a connected web client. We already have a POST endpoint called `/run`, it shouldn't be too much work to add a button that will POST to this URI and fire off the backend task.
+
+A couple quick additions to our index page later, and we end up with something like this.
+
+```ruby
+get '/' do
+  content = <<-EOC.gsub(/^ {6}/, '')
+    <html>
+      <head>
+        <title>Part 1: Status to Web</title>
+      </head>
+      <body>
+        <input type="button" id="btn_run" value="Run Backend Process"> 
+        <pre id='status_messages'></pre>
+
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript">
+          $('#btn_run').click(function () {
+            $.post('/run');
+          });
+
+          var es = new EventSource('/stream');
+          es.addEventListener('status_event', function(e) {
+            $('#status_messages').append(e.data + '\\n')
+          }, false);
+        </script>
+      </body>
+    <html>
+  EOC
+end
+```
+
+We now have a button that triggers an AJAXy POST to the `/run` URI, and nothing else. We don't bother to capture the output of the POST, as we already know it's a 204 with no content. The real output will come from the SSE events.
+
+The end result of all our work is a web UI that contains a button to trigger an asynchronous backend process:
+
+![screenshot of browser showing run button](/assets/images/2013_09_20_celluloid_eventsource_2.png)
+
+When we push the button, we see a POST to `/run` appear in our log, and then our `StatusSender` and `StatusObserver` exchanging messages generated by `MyBackendProcess`.
+
+```bash
+$ bundle exec rackup -s thin
+>> Thin web server (v1.5.1 codename Straight Razor)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:9292, CTRL+C to stop
+127.0.0.1 - - [20/Sep/2013 00:01:11] "GET / HTTP/1.1" 200 564 0.0033
+127.0.0.1 - - [20/Sep/2013 00:03:19] "POST /run HTTP/1.1" 204 - 0.0023
+StatusSender publishing message from MyBackendProcess: run method invoked
+StatusObserver received status_event message: 2013-09-20 00:03:19 -0700 MyBackendProcess: run method invoked
+StatusSender publishing message from MyBackendProcess: doing a thing
+StatusObserver received status_event message: 2013-09-20 00:03:20 -0700 MyBackendProcess: doing a thing
+StatusSender publishing message from MyBackendProcess: doing a second thing
+StatusObserver received status_event message: 2013-09-20 00:03:21 -0700 MyBackendProcess: doing a second thing
+StatusSender publishing message from MyBackendProcess: completed ALL THE THINGS!
+StatusObserver received status_event message: 2013-09-20 00:03:22 -0700 MyBackendProcess: completed ALL THE THINGS!
+StatusSender publishing message from MyBackendProcess: idle
+StatusObserver received status_event message: 2013-09-20 00:03:23 -0700 MyBackendProcess: idle
+```
+
+As promised, we see real-time messages appearing in the web client, one each second as the backend process performs its task.
+
+![screenshot of browser showing completed workflow](/assets/images/2013_09_20_celluloid_eventsource_3.png)
+
+We've achieved our objective for part one of this series. in future posts I'll be fleshing out this tool to provide a real logging framework, server side state information, and other enhancements.
+
+All the code from this post is available at [my GitHub account](https://github.com/mgreensmith/async_tasks_from_webui_example).
