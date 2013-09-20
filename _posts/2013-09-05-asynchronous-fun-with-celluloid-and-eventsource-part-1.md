@@ -15,7 +15,45 @@ I propose to Dimitry that the next evolution of DevOps involves writing software
 
 It's relatively easy to ask a developer or sysadmin to run an application from a command line and observe the output - we are comfortable in a shell, we know how to set up local development environments and satisfy dependencies, etc. It's much harder to ask this of someone who may never have worked on the command line, so I'm going to focus on provising a web-based tool that can be used to trigger existing backend processes.
 
-In this series of posts, I'm going to take a simple command-line ruby application that performs a long-running job, and wrap it in a web interface that can invoke the job asynchronously as well as provide real-time status updates back to the user. It's surprisingly simple to accomplish this, so I'll expand 
+In this series of posts, I'm going to take a simple command-line ruby application that performs a long-running job (such as a code deploy) and wrap it in a web interface that can invoke the job asynchronously as well as provide real-time status updates back to the user. It's surprisingly simple to accomplish this, so I'll expand the exercise in stages, using this as an introduction to a few useful ruby gems including Sinatra, Celluloid and Logging.
+
+Let's start with an existing process that looks something like this:
+```
+# my_backend_process.rb
+class MyBackendProcess
+  attr_reader :status
+
+  def initialize
+    @status = 'idle'
+  end
+
+  def run
+    change_status('run method invoked')
+    sleep 1
+    change_status('doing a thing')
+    sleep 1
+    change_status('doing a second thing')
+    sleep 1
+    change_status('completed ALL THE THINGS!')
+    sleep 1
+    change_status('idle')
+  end
+
+  private
+
+    def change_status(new_status)
+      @status = new_status
+      puts @status
+    end
+end
+
+MyBackendProcess.new.run
+```
+So this will be our stand-in for a long-running process that completes a task, maybe it's a build process or a code deploy via [capistrano](http://www.capistranorb.com/) or [ansible](http://www.ansibleworks.com/). If I run this from a command line, I get real-time output as the task is running. Our goal will be to create a web UI that can trigger this task and receive the same real-time output from the running process on the server.
+
+Our first step will be to create a web server that can trigger the task. I'll use [Sinatra](http://www.sinatrarb.com/) for this, arguably one of the easiest web frameworks out there.
+
+
 
 
 These days, there are lots of ways to push data in real time from a web server to a connected client. WebSockets, Server-Sent Events, Comet, BOSH, XMPP, and (cheating with) Flash or Java Applets are all viable ways to send push messages, with various levels of server and browser support. Among these tools, Server-Sent Events (SSE) is arguably one of the simplest technologies to implement when building support for server-to-client push updates.
