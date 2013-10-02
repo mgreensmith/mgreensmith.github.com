@@ -363,12 +363,11 @@ div.posts article div.date time {
 
 /* line 8, ../_sass/_custom.scss */
 #main {
-  overflow: auto;
   padding-bottom: 100px;
   /* this needs to be bigger than footer height*/
 }
 
-/* line 13, ../_sass/_custom.scss */
+/* line 12, ../_sass/_custom.scss */
 .footer {
   position: relative;
   margin-top: -100px;
@@ -378,12 +377,12 @@ div.posts article div.date time {
   padding-top: 20px;
 }
 
-/* line 21, ../_sass/_custom.scss */
+/* line 20, ../_sass/_custom.scss */
 a {
   color: #bada55;
 }
 
-/* line 25, ../_sass/_custom.scss */
+/* line 24, ../_sass/_custom.scss */
 .page-header h1 {
   color: #bada55;
 }
