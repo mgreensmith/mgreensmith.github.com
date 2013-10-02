@@ -70,7 +70,7 @@ class DemoServer < Sinatra::Base
 
 end
 ```
-There are a couple of things to note here. First, I'm using a [modular](http://www.sinatrarb.com/intro.html#Sinatra::Base%20-%20Middleware,%20Libraries,%20and%20Modular%20Apps) (subclassing Sinatra::Base) app rather than the 'classic' top-level Sinatra:Application. Secondly, I've created a new instance of `MyBackendProcess` as a *setting*, which is the equavalent of a class variable in Sinatra-speak. There will be a single `MyBackendProcess` to which all connected web clients can share access. 
+There are a couple of things to note here. First, I'm using a [modular](http://www.sinatrarb.com/intro.html#Sinatra::Base%20-%20Middleware,%20Libraries,%20and%20Modular%20Apps) (subclassing Sinatra::Base) app rather than the 'classic' top-level Sinatra:Application. Secondly, I've created a new instance of `MyBackendProcess` as a *setting*, which is the equivalent of a class variable in Sinatra-speak. There will be a single `MyBackendProcess` to which all connected web clients can share access. 
 
 I'm going to use [thin](http://code.macournoyer.com/thin/) as a container to run my sinatra app, because it supports streaming functionality that we'll be using later. I'll use a `config.ru` to tell [rack](http://rack.github.io/) how to launch my app.
 
@@ -115,7 +115,7 @@ X-Content-Type-Options: nosniff
 http POST localhost:9292/run  0.25s user 0.04s system 6% cpu 4.300 total
 ```
 
-OK, we got our 204 response and we see that the process ran, that's a good start. However, we still have a couple problems, one being that the process output was displayed only in the webserver log, and secondly that we had to wait for the entire backend process to complete (4 seconds) before getting our response code on the client end. 
+OK, we got our 204 response and we see that the process ran, that's a good start. However, we have a couple problems, one being that the process output was displayed only in the webserver log, and secondly that we had to wait for the entire backend process to complete (4 seconds) before getting our response code on the client end. 
 
 Now that we can run ruby via a POST command, let's see if we can run it *asynchronously*. I'm going to use [Celluloid](http://celluloid.io/), which is a concurrency framework that makes multithreaded Ruby programming easier. Incuding celluloid in anyRuby class  canges instances of that class into concurrent objects in their own threads, allowing you to call methods and then seamlessly background them with no blocking. See the [Celluloid wiki](https://github.com/celluloid/celluloid/wiki) for better explanations.
 
