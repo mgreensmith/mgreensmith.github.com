@@ -16,10 +16,13 @@ Huge thanks to [Matt Swanson](http://mdswanson.com/blog/2011/07/23/digging-aroun
 
 Set up a github client instance; you can authenticate with a username and password, or an [OAuth token](http://www.lornajane.net/posts/2012/github-api-access-tokens-via-curl)
 
+*Update: I wrote this post against Octokit 1.x, but Octokit 2.0 is now stable, and `:oauth_token` has been renamed to `:access_token`*
+
 ```ruby
 require 'octokit'
 
-github = Octokit::Client.new( :oauth_token => "1hw9782egfbioj3fo32hf893fgb32yfv238fy" )
+github = Octokit::Client.new( :access_token => "1hw9782egfbioj3fo32hf893fgb32yfv238fy" ) # Octokit 2.x
+#github = Octokit::Client.new( :oauth_token => "1hw9782egfbioj3fo32hf893fgb32yfv238fy" ) # Octokit 1.x
 # or
 #github = Octokit::Client.new( :login => "me", :password => "sekret" )
 
@@ -79,7 +82,8 @@ Here's the full code listing:
 ```ruby
 require 'octokit'
 
-github = Octokit::Client.new( :oauth_token => "1hw9782egfbioj3fo32hf893fgb32yfv238fy" )
+github = Octokit::Client.new( :access_token => "1hw9782egfbioj3fo32hf893fgb32yfv238fy" ) # Octokit 2.x
+#github = Octokit::Client.new( :oauth_token => "1hw9782egfbioj3fo32hf893fgb32yfv238fy" ) # Octokit 1.x
 # or
 #github = Octokit::Client.new(:login => "me", :password => "sekret")
 

@@ -13,7 +13,7 @@ In his [excellent post about DevOps practices](http://www.somic.org/2010/03/02/t
 
 I propose to Dimitry that the next evolution of DevOps involves writing software that can be used by the project manager, the business analyst, the program manager, any non-technical team member. If I can't automate routine tasks into oblivion, I should be getting someone else to do them! (Preferably the person who would have asked me in the first place.)
 
-It's relatively easy to ask a developer or sysadmin to run an application from a command line and observe the output - we are comfortable in a shell, we know how to set up local development environments and satisfy dependencies, etc. It's much harder to ask this of someone who may never have worked on the command line, so I'm going to focus on provising a web-based tool that can be used to trigger existing backend processes.
+It's relatively easy to ask a developer or sysadmin to run an application from a command line and observe the output - we are comfortable in a shell, we know how to set up local development environments and satisfy dependencies, etc. It's much harder to ask this of someone who may never have worked on the command line, so I'm going to focus on providing a web-based tool that can be used to trigger existing backend processes.
 
 In this series of posts, I'm going to take a simple command-line ruby application that performs a long-running job (such as a code deploy) and wrap it in a web interface that can invoke the job asynchronously as well as provide real-time status updates back to the user. It's surprisingly simple to accomplish this, so I'll expand the exercise in stages, using this as an introduction to a few useful ruby gems including Sinatra, Celluloid and Logging.
 
@@ -117,7 +117,7 @@ http POST localhost:9292/run  0.25s user 0.04s system 6% cpu 4.300 total
 
 OK, we got our 204 response and we see that the process ran, that's a good start. However, we have a couple problems, one being that the process output was displayed only in the webserver log, and secondly that we had to wait for the entire backend process to complete (4 seconds) before getting our response code on the client end. 
 
-Now that we can run ruby via a POST command, let's see if we can run it *asynchronously*. I'm going to use [Celluloid](http://celluloid.io/), which is a concurrency framework that makes multithreaded Ruby programming easier. Incuding celluloid in anyRuby class  canges instances of that class into concurrent objects in their own threads, allowing you to call methods and then seamlessly background them with no blocking. See the [Celluloid wiki](https://github.com/celluloid/celluloid/wiki) for better explanations.
+Now that we can run ruby via a POST command, let's see if we can run it *asynchronously*. I'm going to use [Celluloid](http://celluloid.io/), which is a concurrency framework that makes multithreaded Ruby programming easier. Incuding celluloid in any Ruby class changes instances of that class into concurrent objects in their own threads, allowing you to call methods and then seamlessly background them with no blocking. See the [Celluloid wiki](https://github.com/celluloid/celluloid/wiki) for better explanations.
 
 To convert `MyBackendProcess` into a celluloid worker, we just make a couple trivial additions:
 
@@ -175,7 +175,7 @@ The big challenge for this part of the exercise will be to push the status outpu
 
 These days, there are lots of ways to push data in real time from a web server to a connected client. WebSockets, Server-Sent Events, Comet, BOSH, XMPP, and (cheating with) Flash or Java Applets are all viable ways to send push messages, with various levels of server and browser support. Among these tools, Server-Sent Events (SSE) is arguably one of the simplest technologies to implement when building support for server-to-client push updates.
 
-Sinatra has built-in support for SSE when used with a streaming-capable container such as thin (now you know why I chose it!). On the client side, SSE is known as EventSource and is handled with just a few lines of javascript, I'll be using jQuery because I'm not a masochist. So let's make some changes to our Sinatra app.
+Sinatra has built-in support for SSE when used with a streaming-capable container such as thin (now you know why I chose it!). On the client side, SSE is known as EventSource and is handled with just a few lines of javascript, I'll be using jQuery. So let's make some changes to our Sinatra app.
 
 We will first add a new *setting* to hold an array of connected clients, then we'll add a `get` block to the URI `/stream`. This URI will serve a MIME-type of *text/event-stream*. We store all connected clients in the `:connections` array, and we delete them when they drop their connection.
 
@@ -189,7 +189,7 @@ get '/stream', :provides => 'text/event-stream' do    # new URI for clients to l
   end
 end
 ```
-The SSE protocol is really trivial, it's all HTML, and messages are in plaintext. They consist of an *event* line with an arbitrary name to distinguish the type of event, and a *data* line containing the contents of the message. Two consecutive newlines signify the end of the data. The format is:
+The SSE protocol is really trivial, it's all HTTP, and messages are in plaintext. They consist of an *event* line with an arbitrary name to distinguish the type of event, and a *data* line containing the contents of the message. Two consecutive newlines signify the end of the data. The format is:
 
 ```
 event: my_arbitrary_event

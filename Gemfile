@@ -1,5 +1,5 @@
-source :rubygems
+source 'http://rubygems.org'
  
-gem "compass"
-gem "sass"
-gem "jekyll"
+gem 'compass'
+gem 'sass'
+gem 'jekyll'

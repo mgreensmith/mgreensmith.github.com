@@ -10,11 +10,15 @@ group: navigation
 
 I am a herder of boxen - the servers that run your websites.
 
-I am an Operations Engineer at [Analog Analytics](http://www.analoganalytics.com/)
+I am an Operations Engineer.
 
 I am a Linux Sysadmin.
 
-I am the 'Ops' to your 'Dev.'
+I am the 'Ops' and a bit of the 'Dev.'
+
+I've recently worked for [AppFog](https://www.appfog.com/), [Analog Analytics](http://analoganalytics.com/), and [Renewable Funding](https://renewfund.com).
+
+I tinker with Ruby and build stuff with [Chef](http://www.getchef.com/).
 
 I like robots. I fly helicopters.
 
