@@ -8,17 +8,15 @@ group: navigation
 
 ## Hi, I'm Matt.
 
-I am a herder of boxen - the servers that run your websites.
+I am a herder of boxen - the servers that run your websites. I keep the lights on at [Cozy](https://cozy.co/).
 
-I am an Operations Engineer.
+I am an Operations Engineer, a toolsmith developer, a Linux Sysadmin.
 
-I am a Linux Sysadmin.
-
-I am the 'Ops' and a bit of the 'Dev.'
+I don't differentiate between the 'Ops' and the 'Dev.'
 
 I've recently worked for [AppFog](https://www.appfog.com/), [Analog Analytics](http://analoganalytics.com/), and [Renewable Funding](https://renewfund.com).
 
-I tinker with Ruby and build stuff with [Chef](http://www.getchef.com/).
+I prefer Ruby and [Chef](http://www.getchef.com/).
 
 I like robots. I fly helicopters.
 
