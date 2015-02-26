@@ -1,0 +1,73 @@
+==================================================================
+https://keybase.io/mgreensmith
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://mattgreensmith.net
+  * I am mgreensmith (https://keybase.io/mgreensmith) on keybase.
+  * I have a public key with fingerprint 4653 A366 1ADF 9C40 2B11  A897 7C31 F1A8 7CFC 5BA0
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "4653a3661adf9c402b11a8977c31f1a87cfc5ba0",
+            "host": "keybase.io",
+            "key_id": "7c31f1a87cfc5ba0",
+            "kid": "0101a4525f7b7a7db950376265e0a374407bb06915cea11e4632c7007068052cb9d80a",
+            "uid": "4563b12ceb278ea8d3800b524130f219",
+            "username": "mgreensmith"
+        },
+        "service": {
+            "hostname": "mattgreensmith.net",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1424971424,
+    "expire_in": 157680000,
+    "prev": "7268f4e672a2b161121031e2bf52131b184687a5040c3a5b1fb4d5a4233deaec",
+    "seqno": 2,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.7
+Comment: https://keybase.io/crypto
+
+yMM6AnicbZJ7UFRVHMd3eUchgoVgPm8zFUVwzn3vUirDRDgOhNUIttByH+cuF9i7
+y+5lYQM1NHInlXhkUJkiQ0QDzQQ62mAPeYxgMulgmjnDoNYw5gMG0a14SPcyOf3T
++eM8fr/P73vO73d+AxGBhnBjJZxqr5yzNBvP9m4qNbwxubW5AuMdohczV2BFaHGR
+ZMWGXE6XrKiYGSNpiuAImoacKJkEEuA8hBxrYhiBgJK2YwRJoHgOYAlYgcOtR2gy
+POdGibJDs2kHqyxq1v/hixYdAALIkRROSQzPcIzImyhAMDROUwhwBEOSgOF5QJsg
+JSAOQkTSBC4wADCAZgGFC7xJZAGnyZUuypEUTfAQFxCPMyziWJFgAeApnIQEkHBo
+0kE3cimcHWm03eZCSHHbZbUA256AaQ6PLCC9CnoyDyFOVf/jEhWkaiJOl0N1CI5i
+zV+gqk6zHq56nTpfhnjrv0pWXlZErZ5agAe53LJDwcxQIwVV1qUhiZMmRp8TMFTu
+lF3IKusExWi5aUO/Bnn06uE0K5GIZnBO+wAaQhwCAiKclygcEpCHLEmzDEcBEggE
+R/FQ4kmR4kicIETEIQHTcytRHJgZ157J2TRJt2xTOLXUhbDtfb25QQZjuCEkOEDv
+CEP4I0sf9kkFGblQlnJv9eWC0e/jZ2u/ORhK9T/nLtyf+dlE8dwD5cupI0vPtvs8
+F3wb3D9/96FfPdlUXX7YTqQmB706GOWbWnGsIafh0bUpP9YP9+zOX2W9qXZvvjsQ
+9nFcteVaI+a3jcRXFSd1BAztlXbV1ZbZcjZ5X6+u/f2Z31pze7pXhKZ+tdD1Zuv5
+/Dt/2VZaj48rYHbd+La0Y4+tjukbCVy4e641MD+wvJUYg5O1HSBp3y3+g6bWiMdT
+Q+J7s8SuwtuVo52DO5tnv/X0HHLGvNbIfrIzZDR9Vfh7a/qv19dE3Df7m09VeOtN
+L/tOPnGC/nW5eT76j3fSN05M3KI7fHU/1YCS+CyvNzzCWLL80kZ76GSmN6wda9qS
+N7QlT+rM80ecmZ9eV+W/PzBvv3Fg5vowPVfcca/ol+dD2lIv/R032H21ov2HpmeL
+3pqLzt7zYst0lGVJcGzm+v6jQ8O70jLrM9qMcWJh78y+jP47YSu9OdPJ778bmXG7
+xuw/tD53rTAxdvmV7jNjO4rSnz7ecnjHp5aQ6CH52sWsJSWWC7st+88vu3EKVS5T
+WryFkdHBzOlqx1TaF1WGvowrwoGWj27iKc7GLtsVLtuSyFYd8Z5oKv3z7Ul+Jvvi
+3jXG07FH60o7JxsTPs9NPnd1nPcYo6ZGntxwsC2A2UM8xT6IDc7YnLst5oWepLqg
+rxvg1jr5pX8Ad4OrOQ==
+=m70A
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/mgreensmith
+
+==================================================================
