@@ -8,7 +8,7 @@ tags: [unifi, ubiquiti, ubuntu, aws]
 {% include JB/setup %}
 In this walkthrough we will:
 
-- install the latest release of the Ubiquiti UniFi Controller sotware on an AWS EC2 instance
+- install the latest release of the Ubiquiti UniFi Controller software on an AWS EC2 instance
 - configure nginx as a reverse proxy (to preserve the native port mapping that ships with the controller)
 - secure the controller and nginx proxy with our own SSL certificate
 
@@ -173,7 +173,7 @@ sudo ln -s /etc/nginx/sites-available/unifi /etc/nginx/sites-enabled/
 sudo service nginx reload
 ```
 
-We're done! The UniFi interface should now be available at `https://unifi.mydomain.com` without having to add `:8443` to the URL. Nginx will reverse-proxy all traffic for you. Here's a breakdown of the various bahaviors that you'll see based on the source URL:
+We're done! The UniFi interface should now be available at `https://unifi.mydomain.com` without having to add `:8443` to the URL. Nginx will reverse-proxy all traffic for you. Here's a breakdown of the various behaviors that you'll see based on the source URL:
 
 - `http://unifi.mydomain.com` Nginx will redirect to HTTPS at `https://unifi.mydomain.com`
 - `https://unifi.mydomain.com` Nginx will proxy traffic to the UniFi controller, user will not see the port number in their browser. (Preferred use case.)
