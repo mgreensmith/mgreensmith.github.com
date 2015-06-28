@@ -5,7 +5,6 @@ description: ""
 category: 
 tags: [ruby, rubygems, sinatra, celluloid, jquery, html5, thin]
 ---
-{% include JB/setup %}
 In my Ops Engineer role, I spend a lot of time running scripts from a shell - code deploy workflows, infrastructure converges, etc. These jobs are automated whenever possible but there are always some holdouts that can't be automated, usually for business reasons. Code deploys to tightly-controlled environments, data fixes, anything that the business folk want done "right now" are all tasks that end up being launched manually at a shell. While my team has invested much time and effort into developing robust tooling to perform routine tasks, often we are not the people responsible for deciding *when* these tasks are performed. 
 
 <!--more-->

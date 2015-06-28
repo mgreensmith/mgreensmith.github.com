@@ -1,127 +1,110 @@
-# This is the default format. 
-# For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink: /:categories/:year/:month/:day/:title 
+#
+# Basic settings.
+#
+url: http://mattgreensmith.net
+baseurl: ""
+title: Matt Greensmith
+description: "Toolsmith, infrastructure developer, operations engineer, linux sysadmin."
+avatar: /assets/images/mg_headshot.jpg
 
-exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "Gemfile", "Gemfile.lock"]
-pygments: true
+#
+# Icons
+#
+icons:
+  rss: true
+  email: matt@mattgreensmith.net
+  github: mgreensmith
+  bitbucket:
+  twitter: mgreensmith
+  facebook:
+  google_plus:
+  tumblr:
+  behance:
+  dribbble:
+  flickr:
+  instagram:
+  linkedin: https://www.linkedin.com/in/mattgreensmith
+  pinterest:
+  reddit:
+  soundcloud:
+  stack_exchange:  # full URL
+  steam:
+  wordpress:
+  youtube:
+
+#
+# Prettify url.
+#
+permalink: pretty
+
+#
+# Scripts.
+#
+google_analytics: UA-37160248-1
+disqus: mattgreensmith
+
+#
+# Localizations.
+#
+str_next: Next
+str_prev: Prev
+str_read_more: Read more...
+str_search: Search
+str_recent_posts: Recent posts
+str_show_all_posts: Show all posts
+
+#
+# Recent posts.
+#
+recent_posts_num: 10
+
+#
+# Pagination.
+#
+paginate: 10
+paginate_path: page/:num
+
+#
+# Social.
+#
+share_buttons: false
+ogp:
+  image_url: http://mattgreensmith.net/assets/images/mg_headshot.jpg
+  fb:
+    admin: # facebook admin id
+    app_id: # facebook application id
+
+#
+# Gems.
+#
+gems:
+  - jemoji
+
+#
+# Styles: see "_sass/base/_variables.scss"
+#
+
+#
+# !! Danger zone !!
+#
+
+include: ["_pages"]
+
 markdown: redcarpet
+redcarpet:
+  extensions: ["autolink", "fenced_code_blocks", "strikethrough", "superscript", "with_toc_data", "tables", "footnotes", "no_intra_emphasis"]
+highlighter: pygments
+
 excerpt_separator: <!--more-->
 
-# Themes are encouraged to use these universal variables 
-# so be sure to set them if your theme uses them.
-#
-title : Matt Greensmith 
-tagline: 
-author :
-  name : Matt Greensmith
-  email : matt@mattgreensmith.net
-  github : mgreensmith
-  twitter : mgreensmith
-  linkedin: mattgreensmith
+sass:
+  sass_dir: _sass
+  style: :compressed # or :expanded
 
-# The production_url is only used when full-domain names are needed
-# such as sitemap.txt 
-# Most places will/should use BASE_PATH to make the urls
-#
-# If you have set a CNAME (pages.github.com) set your custom domain here.
-# Else if you are pushing to username.github.com, replace with your username.
-# Finally if you are pushing to a GitHub project page, include the project name at the end.
-#
-production_url : http://www.mattgreensmith.net
-
-# All Jekyll-Bootstrap specific configurations are namespaced into this hash
-#
-JB :
-  version : 0.2.13
-
-  # All links will be namespaced by BASE_PATH if defined.
-  # Links in your website should always be prefixed with {{BASE_PATH}}
-  # however this value will be dynamically changed depending on your deployment situation.
-  #
-  # CNAME (http://yourcustomdomain.com)
-  #   DO NOT SET BASE_PATH 
-  #   (urls will be prefixed with "/" and work relatively)
-  #
-  # GitHub Pages (http://username.github.com)
-  #   DO NOT SET BASE_PATH 
-  #   (urls will be prefixed with "/" and work relatively)
-  #
-  # GitHub Project Pages (http://username.github.com/project-name)
-  #
-  #   A GitHub Project site exists in the `gh-pages` branch of one of your repositories.
-  #  REQUIRED! Set BASE_PATH to: http://username.github.com/project-name
-  #
-  # CAUTION:
-  #   - When in Localhost, your site will run from root "/" regardless of BASE_PATH
-  #   - Only the following values are falsy: ["", null, false]
-  #   - When setting BASE_PATH it must be a valid url.
-  #     This means always setting the protocol (http|https) or prefixing with "/"
-  BASE_PATH : false
-
-  # By default, the asset_path is automatically defined relative to BASE_PATH plus the enabled theme.
-  # ex: [BASE_PATH]/assets/themes/[THEME-NAME]
-  #
-  # Override this by defining an absolute path to assets here.
-  # ex: 
-  #   http://s3.amazonaws.com/yoursite/themes/watermelon
-  #   /assets
-  #
-  ASSET_PATH : false
-
-  # These paths are to the main pages Jekyll-Bootstrap ships with.
-  # Some JB helpers refer to these paths; change theme here if needed.
-  #
-  archive_path: /archive.html
-  categories_path : /categories.html
-  tags_path : /tags.html
-
-  # Settings for comments helper
-  # Set 'provider' to the comment provider you want to use.
-  # Set 'provider' to false to turn commenting off globally.
-  #
-  comments :
-    provider : disqus
-    disqus :
-      short_name : mattgreensmith
-    livefyre :
-      site_id : 123
-    intensedebate :
-      account : 123abc
-    facebook :
-      appid : 123
-      num_posts: 5
-      width: 580
-      colorscheme: light
-   
-  # Settings for analytics helper
-  # Set 'provider' to the analytics provider you want to use.
-  # Set 'provider' to false to turn analytics off globally.
-  #        
-  analytics :
-    provider : google 
-    google : 
-        tracking_id : 'UA-37160248-1'
-    getclicky :
-      site_id : 
-    mixpanel :
-        token : '_MIXPANEL_TOKEN_'
-
-  # Settings for sharing helper. 
-  # Sharing is for things like tweet, plusone, like, reddit buttons etc.
-  # Set 'provider' to the sharing provider you want to use.
-  # Set 'provider' to false to turn sharing off globally.
-  #
-  sharing :
-    provider : false
-    
-  # Settings for all other include helpers can be defined by creating 
-  # a hash with key named for the given helper. ex:
-  #
-  #   pages_list :
-  #     provider : "custom"   
-  #
-  # Setting any helper's provider to 'custom' will bypass the helper code
-  # and include your custom code. Your custom file must be defined at:
-  #   ./_includes/custom/[HELPER]
-  # where [HELPER] is the name of the helper you are overriding.
-  
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - vendor
+  - .rbenv-gemsets

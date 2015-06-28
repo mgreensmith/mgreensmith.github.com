@@ -10,3 +10,5 @@ Thumbs.db
 .rvmrc
 
 _sass/.sass-cache
+.sass-cache/
+

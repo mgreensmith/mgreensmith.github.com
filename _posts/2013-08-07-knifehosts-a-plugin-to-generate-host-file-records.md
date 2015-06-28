@@ -5,7 +5,6 @@ description: "A knife plugin that cleans up node names into their easy-to-rememb
 category: 
 tags: [chef, knife, rubygems]
 ---
-{% include JB/setup %}
 
 ### Problem
 We have a bunch of chef-managed servers that are physical machines hosted at Rackspace. Rackspace's host naming scheme involves a 6-digit number preceeding the hostname, ie `123456-app1.foo.com`. These names are hard to remember, and we don't have public DNS records for all of our chef-controlled servers. We would prefer not to make public DNS records, but we also don't want to have to `knife ssh "name:123456-app1.foo.com"` (after doing a `knife show` to find the actual node name).

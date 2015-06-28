@@ -1,5 +1,3 @@
-source 'http://rubygems.org'
- 
-gem 'compass'
-gem 'sass'
-gem 'jekyll'
+source 'https://rubygems.org'
+gem 'github-pages'
+gem 'jemoji'

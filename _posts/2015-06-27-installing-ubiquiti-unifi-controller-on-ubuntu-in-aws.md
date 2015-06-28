@@ -5,7 +5,6 @@ description: ""
 category: 
 tags: [unifi, ubiquiti, ubuntu, aws]
 ---
-{% include JB/setup %}
 In this walkthrough we will:
 
 - install the latest release of the Ubiquiti UniFi Controller software on an AWS EC2 instance

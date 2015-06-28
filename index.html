@@ -1,18 +1,30 @@
 ---
-layout: page
-title: Boxenherder
-tagline: (noun) 1. Herder of boxen, esp. web servers  2. Operations Engineer  3. Linux Sysadmin
+layout: default
 ---
 
-{% for post in site.posts limit: 10 %}
-<div class="row-fluid">
-  <div class="span12">
-    <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-    <h4>{{ post.date | date_to_long_string }}</h4>
-    <p>
-      {{ post.excerpt }} <a href="{{ post.url }}">Read More</a>
-    </p>
-  </div>
+{% for post in paginator.posts %}
+<div class="article-wrapper">
+    {% if site.share_buttons %}
+    <article>
+    {% else %}
+    <article>
+    {% endif %}
+    {% include article-header.html page=post link=true %}
+        <section class="post-content">
+            {% assign size = post.content | split: site.excerpt_separator | size %}
+            {% if size > 1 %}
+            {{ post.excerpt }}
+            <a class="btn" href="{{ post.url | prepend: site.baseurl }}">{{ site.str_read_more }}</a>
+            {% else %}
+            {{ post.content }}
+            {% endif %}
+        </section>
+    </article>
 </div>
-<hr>
+
+{% if forloop.last != true %}
+<hr/>
+{% endif %}
 {% endfor %}
+
+{% include paginator.html %}

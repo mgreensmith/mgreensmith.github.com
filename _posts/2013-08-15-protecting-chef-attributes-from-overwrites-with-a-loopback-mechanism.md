@@ -5,7 +5,6 @@ description: ""
 category: 
 tags: [chef, rubygems, ridley]
 ---
-{% include JB/setup %}
 
 "Workflow is hard" is a perennial complaint among the Opscode Chef users that I know. If you have multiple committers, multiple tools to update the chef server, and multiple branches in your cookbooks git repository, it's easy for things to get out of sync. Sometimes we see workflow mistakes where a running configuration may have been updated in the chef server but not committed to git. There's no simple mechanism to pull your running config (environments, roles, etc) out of your chef server and into your source repository, and it's frustrating when your 'source of truth' (git) is no longer so.
 
