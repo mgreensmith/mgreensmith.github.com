@@ -38,6 +38,9 @@
                 padding: 0.5em 0.3em;
                 display: block;
                 width: 100%;
+                &.page-link {
+                    font-size: 1.5em;
+                }
             }
             &:last-child {
                 margin-bottom: 0;

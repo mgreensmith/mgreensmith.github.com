@@ -36,14 +36,14 @@ $side-padding: 10px;
 .site-content {
     width: 70%;
     float: left;
+    padding: 0 $side-padding;
     @media screen and (max-width: $mobile-width) {
         width: 100%;
-        padding: 0 $side-padding;
     }
 }
 
 .site-aside {
-    padding-left: 50px;
+    padding-left: 30px;
     width: 30%;
     float: left;
     @media screen and (max-width: $mobile-width) {
