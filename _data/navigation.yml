@@ -1,0 +1,16 @@
+# Site navigation links
+
+- title: About
+  url: /about/
+
+- title: Open Source
+  url: /open-source/
+
+- title: Consulting
+  url: /consulting/
+
+- title: Posts
+  url: /posts/
+
+- title: Challenge!
+  url: http://challenge.matt.pw
