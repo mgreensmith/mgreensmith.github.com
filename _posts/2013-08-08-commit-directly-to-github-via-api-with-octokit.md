@@ -4,6 +4,7 @@ title: "Commit directly to GitHub via API with Octokit"
 description: ""
 category: 
 tags: [github, octokit, rubygems]
+comments: true
 ---
 
 GitHub's full-featured API allows us to do really neat things, like commit to a git repository programmatically, without having to have a local git installation or a local copy of the repo.

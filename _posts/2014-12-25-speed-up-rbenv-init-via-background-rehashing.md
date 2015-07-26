@@ -4,6 +4,7 @@ title: "Speed up rbenv init via background rehashing"
 description: ""
 category: 
 tags: [ruby, rbenv]
+comments: true
 ---
 For a long time, new local shell windows on my development machine have taken a painful 2+ seconds to load. It finally bothered me enough to look into it, and the major culprit turned out to be the ruby version manager `rbenv`. More specifically, the non-backgrounded `rbenv rehash` action that happens on every initialization.
 

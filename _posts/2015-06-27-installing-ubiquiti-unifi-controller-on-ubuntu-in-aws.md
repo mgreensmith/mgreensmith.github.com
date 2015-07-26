@@ -4,6 +4,7 @@ title: "Installing Ubiquiti UniFi Controller on Ubuntu in AWS"
 description: ""
 category: 
 tags: [unifi, ubiquiti, ubuntu, aws]
+comments: true
 ---
 In this walkthrough we will:
 
