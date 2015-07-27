@@ -1,0 +1,14 @@
+<article>
+  <h2>
+    <div class="pull-left"><a href="{{ include.url }}" target="_blank">{{ include.name }}</a></div>
+    <div class="pull-right">
+      {% if include.github %}
+      &nbsp;&nbsp;<a class="tiny-link" href="{{ include.github }}" target="_blank"><i class="fa fa-fw fa-github"></i>Github</a>
+      {% endif %}
+      {% if include.rubygems %}
+      &nbsp;&nbsp;<a class="tiny-link" href="{{ include.rubygems }}" target="_blank"><i class="fa fa-fw fa-diamond"></i>Rubygems</a>
+      {% endif %}
+    </div>
+  </h2>
+  <p style="clear: both; padding-top: 4px;">{{ include.description }}</p>
+</article>
