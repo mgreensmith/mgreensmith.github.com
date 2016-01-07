@@ -44,13 +44,17 @@ me@mycomputer:~$ ssh -i ~/.ssh/my-aws-key.pem ubuntu@YOUR_EC2_HOSTNAME
 Add Ubiquiti's Ubuntu repository to your `apt` sources, import their GPG key and then install the UniFi Controller package.
 
 ```
-echo 'deb http://www.ubnt.com/downloads/unifi/distros/deb/ubuntu ubuntu ubiquiti' | sudo tee /etc/apt/sources.list
+echo 'deb http://www.ubnt.com/downloads/unifi/debian unifi4 ubiquiti' | sudo tee /etc/apt/sources.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50
 sudo apt-get update
-sudo apt-get install unifi-beta # 4.x series, or unifi-stable (2.x) or unifi-rapid (3.x)
+sudo apt-get install unifi
 ```
 
-Note that UniFi Switch and UniFi Security Gateway products are only supported by the beta version of the controller (`4.x` series). Also, if you choose the `stable` channel, you'll likely have to modify the target of `JAVA_HOME` in `/etc/init.d/unifi`, as they hardcoded an obsolete path to the JVM. 
+
+_EDIT 2016-1-7: Ubiquiti repo channels `unifi-beta` and `unifi-rapid` have been renamed to `unifi4` (stable) and `unifi3` (oldstable)._
+
+Note that UniFi Switch and UniFi Security Gateway products are only supported by the `unifi4` version of the controller (`4.x` series). Also, if you choose the `unifi3` channel, you'll likely have to modify the target of `JAVA_HOME` in `/etc/init.d/unifi`, as they hardcoded an obsolete path to the JVM.
+
 
 You should now be able to connect to the controller UI via your browser at `https://YOUR_EC2_HOSTNAME:8443` and complete the first-run setup wizard for the UniFi controller.
 
