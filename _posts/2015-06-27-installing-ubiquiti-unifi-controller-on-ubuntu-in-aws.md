@@ -91,7 +91,7 @@ When prompted to create a password for the new certificate package, use `aircont
 Now we have a new file `unifi.mydomain.com.p12`, which we can import into the UniFi keystore via `keytool`:
 
 ```
-keytool -importkeystore \
+sudo keytool -importkeystore \
   -deststorepass aircontrolenterprise \
   -destkeypass aircontrolenterprise \
   -destkeystore /usr/lib/unifi/data/keystore \
