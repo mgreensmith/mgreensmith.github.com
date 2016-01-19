@@ -159,7 +159,7 @@ server {
   add_header Strict-Transport-Security "max-age=31536000; includeSubdomains";
 
   location / {
-    proxy_pass https://localhost:8443/;
+    proxy_pass https://unifi.mydomain.com:8443/;
   }
 }
 ```
