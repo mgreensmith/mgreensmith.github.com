@@ -4,8 +4,8 @@ locale:           en_US
 url:              http://mattgreensmith.net
 
 # Jekyll configuration
-permalink:   pretty
-markdown: redcarpet
+permalink: pretty
+markdown: kramdown
 redcarpet:
   extensions: ["autolink", "fenced_code_blocks", "strikethrough", "superscript", "with_toc_data", "tables", "footnotes", "no_intra_emphasis"]
 highlighter: rouge
