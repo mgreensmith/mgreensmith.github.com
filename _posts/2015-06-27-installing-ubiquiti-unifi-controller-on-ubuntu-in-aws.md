@@ -130,8 +130,6 @@ Here's an example nginx configuration that creates listeners on port `80` and po
 
 ```
 server_tokens off;
-add_header X-Frame-Options SAMEORIGIN;
-add_header X-XSS-Protection "1; mode=block";
 
 server {
   listen 80 default_server;
@@ -156,6 +154,8 @@ server {
     ssl_stapling on;
     ssl_trusted_certificate /etc/nginx/unifi.mydomain.com.full.crt;
 
+  add_header X-Frame-Options SAMEORIGIN;
+  add_header X-XSS-Protection "1; mode=block";
   add_header Strict-Transport-Security "max-age=31536000; includeSubdomains";
 
   location / {
