@@ -42,7 +42,7 @@ Now your host `localhost` services are accessible from containers via this IP. I
 </plist>
 ```
 
-A quick shell script checks for the presence of the alias IP. If it's missing, we add it and set up a `launchd` service to persist it:
+A quick shell script checks for the presence of the alias IP. If it's missing, add it and set up a `launchd` service to persist it:
 
 ```bash
 #!/usr/bin/env bash

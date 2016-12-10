@@ -27,6 +27,6 @@ Things that interest me professionally:
 - cloud infrastructure
 - containerization
 
-I've formerly worked for [AppFog](https://www.appfog.com/), Analog Analytics (aquired by Barclays Bank), and [Renewable Funding](https://renewfund.com).
+I've formerly worked for [AppFog](https://www.appfog.com/), Analog Analytics (acquired by Barclays Bank), and [Renewable Funding](https://renewfund.com).
 
 My favorite tools include Ruby, Chef, bash, Terraform, docker, GoCD, and AWS.

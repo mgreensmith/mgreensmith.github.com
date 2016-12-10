@@ -8,9 +8,11 @@ image:
   feature: bg-header-index-short.jpg
 ---
 
-Whenever possible, I release my work to the community. Here are a few small things that I've written over the years.
+I publish my code whenever practical. Here's some of my work.
 
 ### Ruby Gems
+
+{% include _project-description.html name='Confidant Client' url='https://github.com/mgreensmith/confidant-client-ruby' github='https://github.com/mgreensmith/confidant-client-ruby' rubygems='https://rubygems.org/gems/confidant' description='A client library and CLI for the Confidant secrets management service.' %}
 
 {% include _project-description.html name='Pry-Auditlog' url='https://github.com/mgreensmith/pry-auditlog' github='https://github.com/mgreensmith/pry-auditlog' rubygems='https://rubygems.org/gems/pry-auditlog' description='A plugin for the Pry REPL that enables logging of any combination of Pry input and output to a configured audit file.' %}
 
@@ -43,3 +45,5 @@ I've written a number of plugins for the [Sensu](https://sensuapp.org/) monitori
 ### Personal Projects
 
 {% include _project-description.html name='CVE Name Generator' url='http://cve.name' github='https://github.com/mgreensmith/cvename' description='Discovered a critical vulnerability in a widely used software package? Need a scary-sounding name (heartbleed, shellshock, etc.) to help drive fear into the hearts of internet users everywhere? You need the <a href="http://cve.name">CVE Name Generator!</a>' %}
+
+{% include _project-description.html name='Delta Robot' url='https://github.com/mgreensmith/deltabot' github='https://github.com/mgreensmith/deltabot' description='A delta-style robot using an Arduino controller managed from a Processing UI.' %}
