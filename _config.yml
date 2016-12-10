@@ -2,12 +2,12 @@
 title:            Boxenherder
 locale:           en_US
 url:              http://mattgreensmith.net
+# For local development:
+#url:              http://127.0.0.1:4000
 
 # Jekyll configuration
 permalink: pretty
 markdown: kramdown
-redcarpet:
-  extensions: ["autolink", "fenced_code_blocks", "strikethrough", "superscript", "with_toc_data", "tables", "footnotes", "no_intra_emphasis"]
 highlighter: rouge
 sass:
   sass_dir: _sass
