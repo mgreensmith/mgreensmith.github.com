@@ -9,16 +9,24 @@ image:
 ---
 
 
-I am a herder of boxen - the servers that run your websites. I keep the lights on at [Cozy](https://cozy.co/).
+I wear a few professional hats:
 
-I am an Operations Engineer, a toolsmith developer, a Linux Sysadmin.
+- Engineering Manager
+- Operations Engineer
+- Infrastructure Developer
+- Linux Systems Administrator
 
-I don't differentiate between the 'Ops' and the 'Dev.'
+I'm the Operations Engineering Manager at [Cozy](https://cozy.co/), where I lead the team that owns the performance, reliability and security of our SaaS-based product.
 
-I've recently worked for [AppFog](https://www.appfog.com/), [Analog Analytics](http://analoganalytics.com/), and [Renewable Funding](https://renewfund.com).
+Things that interest me professionally:
 
-I prefer Ruby and [Chef](http://www.getchef.com/).
+- web services
+- continuous deployment pipelines
+- configuration and data management
+- infrastructure as code
+- cloud infrastructure
+- containerization
 
-I like robots. I fly helicopters.
+I've formerly worked for [AppFog](https://www.appfog.com/), Analog Analytics (aquired by Barclays Bank), and [Renewable Funding](https://renewfund.com).
 
-This is my humble website.
+My favorite tools include Ruby, Chef, bash, Terraform, docker, GoCD, and AWS.
