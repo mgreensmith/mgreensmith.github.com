@@ -6,6 +6,8 @@ category:
 tags: [docker, macos, containers]
 comments: true
 ---
+*Update:* This workaround is no longer necessary as of Docker for Mac version 17.06, which provides a special Mac-only DNS name `docker.for.mac.localhost`, which resolves to the internal IP address used by the host.
+
 A few months ago, I built out a docker-compose-based local development environment for our dev team who had been using a long-in-the-tooth vagrant-based environment to run backend databases. We have traditionally run ruby and nodejs services on our macs, and connected to virtualized databases, which now run in containers. 
 
 I expanded the stack by adding adding a web proxy container, to mimic our production traffic routing locally. For the proxy to route requests to upstream services, I needed to find an accessible, consistent network interface on the host. It turns out that this needs a little extra network config on the host.
@@ -20,7 +22,11 @@ However, there is a recommended solution: you can add a new IP address to the ho
 sudo ifconfig lo0 alias 169.254.254.254
 ```
 
-Now your host `localhost` services are accessible from containers via this IP. I took it one step further and added a launchd service to add this interface on every host boot:
+Now your host `localhost` services are accessible from containers via this IP.
+
+Note that this has security implications, as you're adding a link-local alias IP, which is accessible from your local network (even though it's bound to your loopback interface). While the interface won't answer ARP requests for this IP, other devices on your LAN could manually add an ARP entry with this IP and the MAC address of your physical interface, and access your hosted services.
+
+To make the alias persistent, you can create a launchd service to add the alias on every host boot:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
