@@ -1,9 +1,9 @@
 # Site wide configuration
-title:            Boxenherder
+title:            Matt Greensmith
 locale:           en_US
-url:              http://mattgreensmith.net
+#url:              http://mattgreensmith.net
 # For local development:
-#url:              http://127.0.0.1:4000
+url:              http://127.0.0.1:4000
 
 # Jekyll configuration
 permalink: pretty
@@ -20,7 +20,7 @@ excerpt_separator: <!--more-->
 owner:
   name: Matt Greensmith
   avatar: mg_headshot.jpg
-  bio: "Toolsmith, infrastructure developer, operations engineer, linux sysadmin."
+  bio: "Infrastructure and systems-focused software engineer and cloud architect."
   email: matt@mattgreensmith.net
   disqus-shortname: mattgreensmith
   twitter: mgreensmith
@@ -36,7 +36,7 @@ owner:
   stackoverflow: #123456/username   from a "http://stackoverflow.com/users/123456/username" link
   linkedin: mattgreensmith
   xing: #username
-  instagram: mgreensmith
+  instagram: #mgreensmith
   lastfm: #username
   tumblr: #username
   pinterest: #username
