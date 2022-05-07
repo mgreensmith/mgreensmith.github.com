@@ -1,9 +1,9 @@
 # Site wide configuration
 title:            Matt Greensmith
 locale:           en_US
-#url:              http://mattgreensmith.net
+url:              http://mattgreensmith.net
 # For local development:
-url:              http://127.0.0.1:4000
+#url:              http://127.0.0.1:4000
 
 # Jekyll configuration
 permalink: pretty
